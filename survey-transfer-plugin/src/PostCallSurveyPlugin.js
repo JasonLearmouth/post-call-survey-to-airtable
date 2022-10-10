@@ -1,8 +1,8 @@
-import React from "react";
-import { VERSION } from "@twilio/flex-ui";
-import { FlexPlugin } from "flex-plugin";
+import React from 'react';
+import { VERSION } from '@twilio/flex-ui';
+import { FlexPlugin } from '@twilio/flex-plugin';
 
-const PLUGIN_NAME = "PostCallSurveyPlugin";
+const PLUGIN_NAME = 'PostCallSurveyPlugin';
 
 export default class PostCallSurveyPlugin extends FlexPlugin {
   constructor() {
@@ -19,9 +19,9 @@ export default class PostCallSurveyPlugin extends FlexPlugin {
   async init(flex, manager) {
     this.registerReducers(manager);
 
-    flex.Actions.addListener("beforeHangupCall", async (payload) => {
-      console.log("before call hang up");
-      // TODO: check for survey attribute = true 
+    flex.Actions.addListener('beforeHangupCall', async (payload) => {
+      console.log('before call hang up');
+      // TODO: check for survey attribute = true
       await this.updateCall(
         manager,
         payload.task.attributes.call_sid,
@@ -40,10 +40,10 @@ export default class PostCallSurveyPlugin extends FlexPlugin {
       queueName: queueName,
     };
     const options = {
-      method: "POST",
+      method: 'POST',
       body: new URLSearchParams(body),
       headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
       },
     };
 
